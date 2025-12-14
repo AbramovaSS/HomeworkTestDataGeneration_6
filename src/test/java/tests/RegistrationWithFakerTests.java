@@ -28,7 +28,7 @@ public class RegistrationWithFakerTests extends tests.TestBase {
                 .setStateCityWrapper(city)
                 .setSubmit()
                 .setModalDialog()
-                .checkResult ("Student Name", firstName)
+                .checkResult ("Student Name", firstName + " " + lastName)
                 .checkResult ("Student Email", email)
                 .checkResult ("Gender", userGender)
                 .checkResult ("Mobile", userNumber)
@@ -39,5 +39,40 @@ public class RegistrationWithFakerTests extends tests.TestBase {
                 .checkResult ("Address", currentAddress)
                 .checkResult ("State and City", state + " " + city)
                 .closeModal();
+    }
+
+    @Test
+    void submitFormWithAllRequiredFields() {
+
+        registrationPage.openPage()
+                .removeBanners()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setGender(userGender)
+                .setUserNumber(userNumber)
+                .setDateOfBirth(day, month, year)
+                .setSubmit()
+                .setModalDialog()
+                .checkResult ("Student Name", firstName + " " + lastName)
+                .checkResult ("Gender", userGender)
+                .checkResult ("Mobile", userNumber)
+                .checkResult ("Date of Birth", day + " " + month + "," + year)
+                .closeModal();
+    }
+
+    @Test
+    void fillFormTestNegativeFirstNameIsEmpty() {
+
+        registrationPage.openPage()
+                .removeBanners()
+                // оставляем пустым обязательное поле FirstName
+                // заполняем остальные обязательные поля
+                .setLastName(lastName)
+                .setGender(userGender)
+                .setUserNumber(userNumber)
+                .setDateOfBirth(day, month, year)
+                .setSubmit()
+                .getModalDialog();
+
     }
 }
