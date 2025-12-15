@@ -6,9 +6,9 @@ import java.util.Locale;
 
 public class TestData {
 
-    static Faker faker = new Faker(new Locale("en"));
+    Faker faker = new Faker(new Locale("en"));
 
-    static String firstName = faker.name().firstName(),
+    public String firstName = faker.name().firstName(),
             lastName = faker.name().lastName(),
             email = faker.internet().emailAddress(),
             userGender = faker.options().option("Male", "Female", "Other"),
@@ -26,11 +26,11 @@ public class TestData {
             state = getRandomState(),
             city = selectCity(state);
 
-    public static String getRandomState() {
+    public String getRandomState() {
         return faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
     }
 
-    public static String selectCity(String state) {
+    public String selectCity(String state) {
         return switch (state) {
             case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
             case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");

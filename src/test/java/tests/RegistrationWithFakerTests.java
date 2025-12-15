@@ -3,41 +3,41 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-import static tests.TestData.*;
 
 public class RegistrationWithFakerTests extends tests.TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
+    TestData testData = new TestData();
 
     @Test
     void fillFormTest() {
         registrationPage.openPage()
                 .removeBanners()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(email)
-                .setGender(userGender)
-                .setUserNumber(userNumber)
-                .setDateOfBirth(day, month, year)
-                .setSubjects(subjects)
-                .setHobbies(hobbies)
-                .setUploadPicture(uploadPicture)
-                .setCurrentAddress(currentAddress)
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setEmail(testData.email)
+                .setGender(testData.userGender)
+                .setUserNumber(testData.userNumber)
+                .setDateOfBirth(testData.day, testData.month, testData.year)
+                .setSubjects(testData.subjects)
+                .setHobbies(testData.hobbies)
+                .setUploadPicture(testData.uploadPicture)
+                .setCurrentAddress(testData.currentAddress)
                 .setStateDropdown()
-                .setStateCityWrapper(state)
+                .setStateCityWrapper(testData.state)
                 .setCityDropdown()
-                .setStateCityWrapper(city)
+                .setStateCityWrapper(testData.city)
                 .setSubmit()
                 .setModalDialog()
-                .checkResult ("Student Name", firstName + " " + lastName)
-                .checkResult ("Student Email", email)
-                .checkResult ("Gender", userGender)
-                .checkResult ("Mobile", userNumber)
-                .checkResult ("Date of Birth", day + " " + month + "," + year)
-                .checkResult ("Subjects", subjects)
-                .checkResult ("Hobbies", hobbies)
-                .checkResult ("Picture", uploadPicture)
-                .checkResult ("Address", currentAddress)
-                .checkResult ("State and City", state + " " + city)
+                .checkResult ("Student Name", testData.firstName + " " + testData.lastName)
+                .checkResult ("Student Email", testData.email)
+                .checkResult ("Gender", testData.userGender)
+                .checkResult ("Mobile", testData.userNumber)
+                .checkResult ("Date of Birth", testData.day + " " + testData.month + "," + testData.year)
+                .checkResult ("Subjects", testData.subjects)
+                .checkResult ("Hobbies", testData.hobbies)
+                .checkResult ("Picture", testData.uploadPicture)
+                .checkResult ("Address", testData.currentAddress)
+                .checkResult ("State and City", testData.state + " " + testData.city)
                 .closeModal();
     }
 
@@ -46,17 +46,17 @@ public class RegistrationWithFakerTests extends tests.TestBase {
 
         registrationPage.openPage()
                 .removeBanners()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setGender(userGender)
-                .setUserNumber(userNumber)
-                .setDateOfBirth(day, month, year)
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setGender(testData.userGender)
+                .setUserNumber(testData.userNumber)
+                .setDateOfBirth(testData.day, testData.month, testData.year)
                 .setSubmit()
                 .setModalDialog()
-                .checkResult ("Student Name", firstName + " " + lastName)
-                .checkResult ("Gender", userGender)
-                .checkResult ("Mobile", userNumber)
-                .checkResult ("Date of Birth", day + " " + month + "," + year)
+                .checkResult ("Student Name", testData.firstName + " " + testData.lastName)
+                .checkResult ("Gender", testData.userGender)
+                .checkResult ("Mobile", testData.userNumber)
+                .checkResult ("Date of Birth", testData.day + " " + testData.month + "," + testData.year)
                 .closeModal();
     }
 
@@ -67,10 +67,10 @@ public class RegistrationWithFakerTests extends tests.TestBase {
                 .removeBanners()
                 // оставляем пустым обязательное поле FirstName
                 // заполняем остальные обязательные поля
-                .setLastName(lastName)
-                .setGender(userGender)
-                .setUserNumber(userNumber)
-                .setDateOfBirth(day, month, year)
+                .setLastName(testData.lastName)
+                .setGender(testData.userGender)
+                .setUserNumber(testData.userNumber)
+                .setDateOfBirth(testData.day, testData.month, testData.year)
                 .setSubmit()
                 .getModalDialog();
 
